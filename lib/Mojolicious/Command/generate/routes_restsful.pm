@@ -323,25 +323,27 @@ sub _sub_inline_api_site {
 # My internet browser heard us saying the word Fry and it found a movie about Philip J. Fry for us.
 # It also opened my calendar to Friday and ordered me some french fries.
 1;
+__END__
 
-=encoding utf8
+=pod
+
  
 =head1 NAME
  
-Mojolicious::Command::generate::routes_restsful - Generate an App from a  Mojolicious::Plugin::Routes::Restful HASH
+Mojolicious::Command::generate::routes_restsful - Generate an App from a Mojolicious::Plugin::Routes::Restful HASH
  
 =head1 SYNOPSIS
  
   my $commands = Mojolicious::Commands->new;
   my $gen = Mojolicious::Command::generate::routes_restsful->new;
-  $get->run('RoutesRestfulApp',{ 
+  $gen->run('RoutesRestfulApp',{ 
             CONFIG => { Namespaces => ['RouteRestfulApp::Controller'] },
             PARENT => {...
  
 =head1 DESCRIPTION
  
 Give L<Mojolicious::Command::generate::routes_restsful> a hash that was created for L<Mojolicious::Plugin::Routes::Restful>
-and it will generate a stub in site for you.  You get a stubbed working in version of your app made up of
+and it will generate a stub site for you.  You get a stub working in version of your app made up of
 
   An App Class
   Content Contollers
@@ -350,7 +352,7 @@ and it will generate a stub in site for you.  You get a stubbed working in versi
   A Template set based on your content controlers
   A basic test suite for your API
   
-Please note that this generator overwrites the NAMESPACE atribute of you hash.  It is not intended to use this generator from the command ling.
+Please note that this generator overwrites the NAMESPACE attribute of you hash.  It is not intended to use this generator from the command line.
 Best to use it in a script. See the script dir for an example.
 
 See L<Mojolicious::Plugin::Routes::Restful> for details on how to make a Hash for this generator.
@@ -383,11 +385,12 @@ L<Mojolicious::Command> and implements the following new ones.
  
   $app->run($class,$hash);
  
-Run this command.
+Generates the App. Where $class is the name of the App you want to create, and $hash is a valid L<Mojolicious::Plugin::Routes::Restful> hash.
+
  
 =head1 SEE ALSO
  
-L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicious.org>, L<Mojolicious::Command::generate::routes_restsful>.
+L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicious.org>, L<Mojolicious::Plugin::Routes::Restful>.
  
 =cut
 
