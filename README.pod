@@ -1,0 +1,76 @@
+=pod
+
+ 
+=head1 NAME
+ 
+Mojolicious::Command::generate::routes_restsful - Generate an App from a Mojolicious::Plugin::Routes::Restful HASH
+ 
+=head1 SYNOPSIS
+ 
+  my $commands = Mojolicious::Commands->new;
+  my $gen = Mojolicious::Command::generate::routes_restsful->new;
+  $gen->run('RoutesRestfulApp',{ 
+            CONFIG => { Namespaces => ['RouteRestfulApp::Controller'] },
+            PARENT => {...
+ 
+=head1 DESCRIPTION
+ 
+Give L<Mojolicious::Command::generate::routes_restsful> a hash that was created for L<Mojolicious::Plugin::Routes::Restful>
+and it will generate a stub site for you.  You get a stub working version of your app made up of
+
+  An App Class
+  Content Contollers
+  API Controllers
+  A Startup Script
+  Templates based on your content controlers
+  A basic test suite for your API
+  
+Please note that this generator overwrites the NAMESPACE attribute of your hash if present, so you may have to edit it after. 
+It is not intended to use this generator from the command line.
+
+Best to use it in a script. See the script dir for an example.
+
+See L<Mojolicious::Plugin::Routes::Restful> for details on how to make a Hash for this generator.
+ 
+=head1 ATTRIBUTES
+ 
+L<Mojolicious::Command::generate::app> inherits all attributes from
+L<Mojolicious::Command> and implements the following new ones.
+ 
+=head2 description
+ 
+  my $description = $app->description;
+  $app            = $app->description('Foo');
+ 
+Short description of this command, used for the command list.
+ 
+=head2 usage
+ 
+  my $usage = $app->usage;
+  $app      = $app->usage('Foo');
+ 
+Usage information for this command, used for the help screen.
+ 
+=head1 METHODS
+ 
+L<Mojolicious::Command::generate::routes_restsful> inherits all methods from
+L<Mojolicious::Command> and implements the following new ones.
+ 
+=head2 run
+ 
+  $app->run($class,$hash);
+ 
+Generates the App. Where $class is the name of the App you want to create, and $hash is a valid L<Mojolicious::Plugin::Routes::Restful> hash.
+ 
+=head1 SEE ALSO
+ 
+L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicious.org>, L<Mojolicious::Plugin::Routes::Restful>.
+ 
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2016 John Scoles.
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+See http://dev.perl.org/licenses/ for more information.
+=cut

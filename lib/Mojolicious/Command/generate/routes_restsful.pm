@@ -343,16 +343,18 @@ Mojolicious::Command::generate::routes_restsful - Generate an App from a Mojolic
 =head1 DESCRIPTION
  
 Give L<Mojolicious::Command::generate::routes_restsful> a hash that was created for L<Mojolicious::Plugin::Routes::Restful>
-and it will generate a stub site for you.  You get a stub working in version of your app made up of
+and it will generate a stub site for you.  You get a stub working version of your app made up of
 
   An App Class
   Content Contollers
   API Controllers
   A Startup Script
-  A Template set based on your content controlers
+  Templates based on your content controlers
   A basic test suite for your API
   
-Please note that this generator overwrites the NAMESPACE attribute of you hash.  It is not intended to use this generator from the command line.
+Please note that this generator overwrites the NAMESPACE attribute of your hash if present, so you may have to edit it after. 
+It is not intended to use this generator from the command line.
+
 Best to use it in a script. See the script dir for an example.
 
 See L<Mojolicious::Plugin::Routes::Restful> for details on how to make a Hash for this generator.
@@ -386,11 +388,18 @@ L<Mojolicious::Command> and implements the following new ones.
   $app->run($class,$hash);
  
 Generates the App. Where $class is the name of the App you want to create, and $hash is a valid L<Mojolicious::Plugin::Routes::Restful> hash.
-
  
 =head1 SEE ALSO
  
 L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicious.org>, L<Mojolicious::Plugin::Routes::Restful>.
+ 
+ =head1 LICENSE AND COPYRIGHT
+
+Copyright 2016 John Scoles.
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+See http://dev.perl.org/licenses/ for more information.
  
 =cut
 
