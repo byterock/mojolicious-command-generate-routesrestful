@@ -199,21 +199,21 @@ sub _api_site {
 
     my ( $key, $api, $config ) = @_;
 
-    my $resource         = $api->{resource} || PL($key);
+    my $resource         = $api->{RESOURCE} || PL($key);
     my $verbs            = $api->{VERBS};
     my $stash            = $api->{STASH} || {};
     my $contoller        = $api->{CONTROLLER} || $resource;
-    my $contoller_prefix = $config->{PRIFIX} || "api";
+    my $contoller_prefix = $config->{PREFIX} || "api";
     my $url              = _api_url( $resource, $config );
 
     $site_api->{"$contoller_prefix-$contoller"}->{get} = 1
-      if ( $verbs->{RETREIVE} );
+      if ( $verbs->{RETRIEVE} );
 
     push( @{ $api_urls{GET} }, "/" . $url )
-      if ( $verbs->{RETREIVE} );
+      if ( $verbs->{RETRIEVE} );
 
     push( @{ $api_urls{GET} }, "/" . $url . "/1" )
-      if ( $verbs->{RETREIVE} );
+      if ( $verbs->{RETRIEVE} );
 
     $site_api->{"$contoller_prefix-$contoller"}->{create} = 1
       if ( $verbs->{CREATE} );
@@ -247,26 +247,26 @@ sub _sub_api_site {
 
     my ( $parent, $key, $api, $config ) = @_;
 
-    my $child_resource   = $api->{resource} || PL($key);
+    my $child_resource   = $api->{RESOURCE} || PL($key);
     my $verbs            = $api->{VERBS};
     my $stash            = $api->{STASH} || {};
     my $child_controller = $api->{CONTROLLER} || $child_resource;
-    my $contoller_prefix = $config->{PRIFIX} || "api";
+    my $contoller_prefix = $config->{PREFIX} || "api";
     my $url              = _api_url( $parent, $config );
     $stash->{parent} = $parent;
     $stash->{child}  = $child_resource;
 
     $site_api->{"$contoller_prefix-$parent"}->{$child_resource} = 1
-      if ( $verbs->{RETREIVE} );
+      if ( $verbs->{RETRIEVE} );
 
     $site_api->{"$contoller_prefix-$child_controller"}->{get} = 1
-      if ( $verbs->{RETREIVE} );
+      if ( $verbs->{RETRIEVE} );
 
     push( @{ $api_urls{GET} }, "/" . $url . "/1/" . $child_resource )
-      if ( $verbs->{RETREIVE} );
+      if ( $verbs->{RETRIEVE} );
 
     push( @{ $api_urls{GET} }, "/" . $url . "/1/" . $child_resource . "/1" )
-      if ( $verbs->{RETREIVE} );
+      if ( $verbs->{RETRIEVE} );
 
     $site_api->{"$contoller_prefix-$child_controller"}->{create} = 1
       if ( $verbs->{CREATE} );
@@ -300,16 +300,16 @@ sub _sub_inline_api_site {
     my $child_resource = $api->{RESOURCE} || PL($key);    #this should be action
     my $stash          = $api->{STASH} || {};
     my $action           = $api->{ACTION} || $child_resource;
-    my $contoller_prefix = $config->{PRIFIX} || "api";
+    my $contoller_prefix = $config->{PREFIX} || "api";
     my $url              = _api_url( $parent, $config );
     $stash->{parent} = $parent;
     $stash->{child}  = $child_resource;
 
     $site_api->{"$contoller_prefix-$parent"}->{$action} = 1
-      if ( $verbs->{RETREIVE} );
+      if ( $verbs->{RETRIEVE} );
 
-    push( @{ $api_urls{RETREIVE} }, "/" . $url . "/1/" . $child_resource )
-      if ( $verbs->{RETREIVE} );
+    push( @{ $api_urls{RETRIEVE} }, "/" . $url . "/1/" . $child_resource )
+      if ( $verbs->{RETRIEVE} );
 
     push( @{ $api_urls{UPDATE} }, "/" . $url . "/1/" . $child_resource )
       if ( $verbs->{UPDATE} );
